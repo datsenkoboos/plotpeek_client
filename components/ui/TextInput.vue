@@ -2,6 +2,7 @@
   <UiTitledInput :title="title" :focused="focused">
     <input
       class="grow h-full focus:outline-none"
+      autocomplete="off"
       :type="type"
       :name="title"
       :placeholder="placeholder"
@@ -38,4 +39,8 @@ function focus() {
 function blur() {
   focused.value = false;
 }
+
+onMounted(() => {
+  emit('updateValue', value.value);
+});
 </script>

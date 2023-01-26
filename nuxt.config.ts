@@ -8,4 +8,9 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  runtimeConfig: {
+    public: {
+      API_URL: 'http://localhost:5000/api',
+    },
+  },
 });
