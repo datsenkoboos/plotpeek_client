@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .brand-gradient {
+    @apply bg-gradient-to-r from-pink-500 to-violet-500;
+  }
+  .text-brand-gradient {
+    @apply bg-gradient-to-r from-pink-500 to-violet-500 text-transparent bg-clip-text;
+  }
+}
+
+html {
+  font-family: 'Inter';
+}

@@ -36,11 +36,6 @@
   </form>
 </template>
 <script setup lang="ts">
-import EmailInput from './components/EmailInput.vue';
-import UsernameInput from './components/UsernameInput.vue';
-import PasswordInput from './components/PasswordInput.vue';
-import PasswordConfirmInput from './components/PasswordConfirmInput.vue';
-
 import { useVuelidate } from '@vuelidate/core';
 import {
   email,
@@ -83,8 +78,12 @@ const registrationFormRules = computed(() => {
   return {
     username: {
       required: helpers.withMessage('Fill in required fields', required),
+      lettersAndDigitsOnly: helpers.withMessage(
+        'Username: digits and letters only',
+        helpers.regex(/^[0-9a-zA-Z]+$/)
+      ),
       available: helpers.withMessage(
-        'Username is already registered',
+        'Username is already taken',
         helpers.withAsync(usernameAvailable)
       ),
     },
@@ -98,14 +97,11 @@ const registrationFormRules = computed(() => {
         'Password min. 8 characters',
         minLength(8)
       ),
-      withDigit: helpers.withMessage(
-        'Number required in password',
-        withDigit
-      ),
+      withDigit: helpers.withMessage('Number required in password', withDigit),
       withCapitalLetter: helpers.withMessage(
         'Capital letter required in password',
         withCapitalLetter
-      )
+      ),
     },
     passwordConfirm: {
       required: helpers.withMessage('Fill in required fields', required),
