@@ -1,8 +1,8 @@
 <template>
   <LoadingScreen :loading="loading" />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+  <NuxtLayout>
+    <NuxtPage />
+  </NuxtLayout>
 </template>
 <script setup lang="ts">
 import useAuthStore from './stores/auth';
