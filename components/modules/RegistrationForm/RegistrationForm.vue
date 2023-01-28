@@ -1,8 +1,12 @@
 <template>
   <form
-    class="w-[300px] flex flex-col justify-center gap-5"
+    class="relative w-[300px] flex flex-col justify-center gap-5"
     @submit.prevent="submitRegistrationForm"
   >
+    <UiFormRequestErrorOutput
+      :open="registrationFormState.error"
+      @close="closeRequestErrorOuput"
+    />
     <h1 class="text-center text-3xl font-medium">Registration</h1>
     <div class="flex flex-col gap-2">
       <fieldset
@@ -28,7 +32,7 @@
         <UiFormValidationErrorOutput :v$="v$" />
       </fieldset>
 
-      <UiButton>
+      <UiButton class="h-[32px]">
         <UiLoadingSpinner v-if="registrationFormState.pending" />
         <span v-else>Register</span>
       </UiButton>
@@ -138,5 +142,9 @@ async function submitRegistrationForm() {
       registrationFormState.pending = false;
     }
   }
+}
+
+function closeRequestErrorOuput() {
+  registrationFormState.error = false;
 }
 </script>

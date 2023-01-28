@@ -1,8 +1,13 @@
 <template>
   <form
-    class="w-[300px] flex flex-col justify-center gap-5"
+    class="relative w-[300px] flex flex-col justify-center gap-5"
     @submit.prevent="submitLoginForm"
   >
+    <UiFormRequestErrorOutput
+      :open="loginFormState.error.state"
+      :status="loginFormState.error.statusCode"
+      @close="closeRequestErrorOuput"
+    />
     <h1 class="text-center text-3xl font-medium">Login</h1>
     <div class="flex flex-col gap-2">
       <fieldset class="flex flex-col gap-2">
@@ -16,11 +21,13 @@
         />
         <div class="flex items-center justify-between h-7">
           <UiFormValidationErrorOutput :v$="v$" />
-          <RememberMeInput class="grow" />
+          <RememberMeInput
+            class="grow"
+            @update-value="($event: boolean) => { loginFormState.data.rememberMe = $event; }"
+          />
         </div>
       </fieldset>
-
-      <UiButton>
+      <UiButton class="h-[32px]">
         <UiLoadingSpinner v-if="loginFormState.pending" />
         <span v-else>Login</span>
       </UiButton>
@@ -35,6 +42,9 @@ import { required, helpers } from '@vuelidate/validators';
 
 import login from './api/login';
 
+import useAuthStore from '~~/stores/auth';
+const authStore = useAuthStore();
+
 const emit = defineEmits<{
   (e: 'success'): void;
 }>();
@@ -45,7 +55,10 @@ const loginFormState = reactive<{
     password: string;
     rememberMe: boolean;
   };
-  error: boolean;
+  error: {
+    state: boolean;
+    statusCode: number | null;
+  };
   pending: boolean;
 }>({
   data: {
@@ -53,7 +66,10 @@ const loginFormState = reactive<{
     password: '',
     rememberMe: true,
   },
-  error: false,
+  error: {
+    state: false,
+    statusCode: null,
+  },
   pending: false,
 });
 
@@ -77,21 +93,33 @@ async function submitLoginForm() {
   const valid = await v$.value.$validate();
   if (valid) {
     try {
-      loginFormState.error = false;
+      loginFormState.error.state = false;
       loginFormState.pending = true;
 
-      await login(
+      const { data } = await login(
         loginFormState.data.username,
         loginFormState.data.password,
         loginFormState.data.rememberMe
       );
+      authStore.setUser(data.user);
+      authStore.setAuthorized(true);
 
       emit('success');
-    } catch (error) {
-      loginFormState.error = true;
+    } catch (error: any) {
+      loginFormState.error.state = true;
+      loginFormState.error.statusCode = error.response.status
+        ? error.response.status
+        : null;
     } finally {
       loginFormState.pending = false;
     }
   }
+}
+
+function closeRequestErrorOuput() {
+  loginFormState.error.state = false;
+  setTimeout(() => {
+    loginFormState.error.statusCode = null;
+  }, 200);
 }
 </script>

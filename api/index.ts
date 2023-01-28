@@ -1,9 +1,15 @@
-import { Axios } from "axios";
+import axios, { AxiosRequestConfig } from 'axios';
 
-export default function $api(callback: keyof Axios, ...args: Array<any>) {
-    const runtimeConfig = useRuntimeConfig();
-    return callback({
-        withCredentials: true,
-        baseURL: runtimeConfig.public.API_URL,   
-    }, ...args)
-}
+const $api = axios.create({
+  withCredentials: true,
+  // baseURL: useRuntimeConfig().public.API_URL,
+});
+
+$api.interceptors.request.use((config: AxiosRequestConfig) => {
+  config.headers!.Authorization = `Bearer ${localStorage.getItem(
+    'accessToken'
+  )}`;
+  return config;
+});
+
+export default $api;

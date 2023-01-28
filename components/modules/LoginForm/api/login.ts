@@ -1,18 +1,18 @@
+import $api from '~~/api';
+import AuthResponse from './AuthResponse';
+
 export default async function login(
   username: string,
   password: string,
   refresh: boolean
 ) {
   const runtimeConfig = useRuntimeConfig();
-  const response = await $fetch<{ available: boolean }>(
+  const response = await $api.post<AuthResponse>(
     `${runtimeConfig.public.API_URL}/login`,
     {
-      method: 'POST',
-      body: {
-        username,
-        password,
-        refresh,
-      },
+      username,
+      password,
+      refresh,
     }
   );
   return response;
