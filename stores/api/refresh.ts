@@ -1,5 +1,5 @@
 import $api from '~~/api';
-import AuthResponse from '~~/stores/api/AuthResponse';
+import AuthResponse from './AuthResponse';
 
 export default async function refresh() {
   const runtimeConfig = useRuntimeConfig();

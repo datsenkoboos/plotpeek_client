@@ -1,5 +1,5 @@
 import $api from '~~/api';
-import AuthResponse from './AuthResponse';
+import AuthResponse from '~~/stores/api/AuthResponse';
 
 export default async function login(
   username: string,

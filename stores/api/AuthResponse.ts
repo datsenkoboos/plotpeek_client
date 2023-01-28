@@ -1,4 +1,4 @@
-import User from '~~/stores/api/User';
+import User from './User';
 
 export default interface AuthResponse {
   user: User;
