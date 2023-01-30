@@ -1,5 +1,5 @@
 <template>
-  <LoadingScreen :loading="loading" />
+  <UiLoadingScreen :loading="loading" />
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>

@@ -6,11 +6,13 @@
     @click="updateValue"
     class="cursor-pointer flex items-center justify-center w-[15px] h-[15px] rounded-full border-[1px] focus:border-black focus:outline-none"
     tabindex="0"
+    data-testid="chekbox"
   >
     <div
       v-show="value"
       class="w-[11px] h-[11px] rounded-full brand-gradient"
       :class="hexColor ? `bg-[${color}]` : `bg-${color}`"
+      data-testid="chekboxIndicator"
     ></div>
   </div>
 </template>
