@@ -1,3 +1,5 @@
 <template>
-    <nuxt-link to="/" class="text-xl font-medium hover:text-brand-gradient"> <slot /> </nuxt-link>
+  <nuxt-link to="/" class="text-xl font-medium flex gap-2 justify-center">
+    <slot />
+  </nuxt-link>
 </template>

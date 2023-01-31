@@ -10,8 +10,8 @@
         size="18px"
         :name="
           visible
-            ? 'material-symbols:visibility-outline-rounded'
-            : 'material-symbols:visibility-off-outline-rounded'
+          ? 'ph:eye-bold'
+          : 'ph:eye-closed-bold'
         "
       />
     </button>

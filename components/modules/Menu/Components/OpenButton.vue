@@ -1,6 +1,6 @@
 <template>
   <button @click="uiStore.setMenuActive(true)" class="absolute left-3 top-3">
-    <Icon name="mdi:menu" size="29px" />
+    <Icon name="ph:list-bold" size="29px" />
   </button>
 </template>
 <script setup lang="ts">
