@@ -20,13 +20,9 @@ const useAuthStore = defineStore('auth', {
       this.authorized = authorized;
     },
     async checkAuth(): Promise<void> {
-      try {
-        const { data } = await refresh();
-        this.setUser(data.user);
-        this.setAuthorized(true);
-      } catch (error: any) {
-        console.log(error.response.status);
-      }
+      const { data } = await refresh();
+      this.setUser(data.user);
+      this.setAuthorized(true);
     },
   },
 });

@@ -1,4 +1,4 @@
-import $api from '~~/api';
+import $api from '@/api';
 import AuthResponse from './AuthResponse';
 
 export default async function refresh() {

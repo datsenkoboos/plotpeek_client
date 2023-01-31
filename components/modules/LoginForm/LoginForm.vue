@@ -42,7 +42,7 @@ import { required, helpers } from '@vuelidate/validators';
 
 import login from './api/login';
 
-import useAuthStore from '~~/stores/auth';
+import useAuthStore from '@/stores/auth';
 const authStore = useAuthStore();
 
 const emit = defineEmits<{
