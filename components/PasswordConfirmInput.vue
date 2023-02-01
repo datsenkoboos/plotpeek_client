@@ -8,11 +8,7 @@
     <button @click.prevent="seeHidePassword">
       <Icon
         size="18px"
-        :name="
-          visible
-          ? 'ph:eye-bold'
-          : 'ph:eye-closed-bold'
-        "
+        :name="visible ? 'ph:eye-bold' : 'ph:eye-closed-bold'"
       />
     </button>
   </UiTextInput>

@@ -1,20 +1,22 @@
 <template>
-  <nav class="flex flex-col items-start text-xl">
-    <UiLink to="/">
-      <Icon name="ph:house" size="26px" />
-      <span>Home</span>
-    </UiLink>
-    <UiLink to="/liked">
-      <Icon name="ph:heart" size="26px" />
-      <span>Liked</span>
-    </UiLink>
-    <UiLink to="/create">
-      <Icon name="ph:plus-circle" size="26px" />
-      <span>Create</span>
-    </UiLink>
-    <UiLink to="/logout" class="text-red-500">
-      <Icon name="ph:plus-circle" size="26px" />
+  <nav class="w-full h-full flex flex-col items-center text-lg px-5">
+    <div class="w-full grow flex flex-col gap-2 justify-start">
+      <UiNavLink to="/">
+        <Icon name="ph:house" size="22px" />
+        <span>Home</span>
+      </UiNavLink>
+      <UiNavLink to="/liked">
+        <Icon name="ph:heart" size="22px" />
+        <span>Liked</span>
+      </UiNavLink>
+      <UiNavLink to="/create">
+        <Icon name="ph:plus-circle" size="22px" />
+        <span>Create</span>
+      </UiNavLink>
+    </div>
+    <UiNavLink to="/logout" class="text-white bg-red-500">
+      <Icon name="ph:sign-out" size="22px" />
       <span>Logout</span>
-    </UiLink>
+    </UiNavLink>
   </nav>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <form
-    class="relative w-[300px] flex flex-col justify-center gap-5"
+    class="relative w-full flex flex-col justify-center gap-5 px-5"
     @submit.prevent="submitLoginForm"
   >
     <UiFormRequestErrorOutput
