@@ -4,11 +4,11 @@ import User from './api/User';
 
 const useAuthStore = defineStore('auth', {
   state: (): {
-    authorized: boolean;
+    authorized: boolean | null;
     user: User;
   } => {
     return {
-      authorized: false,
+      authorized: null,
       user: {} as User,
     };
   },
@@ -20,9 +20,14 @@ const useAuthStore = defineStore('auth', {
       this.authorized = authorized;
     },
     async checkAuth(): Promise<void> {
-      const { data } = await refresh();
-      this.setUser(data.user);
-      this.setAuthorized(true);
+      try {
+        const { data } = await refresh();
+        this.setUser(data.user);
+        this.setAuthorized(true);
+      } catch (error) {
+        this.setAuthorized(false);
+        throw error;
+      }
     },
   },
 });

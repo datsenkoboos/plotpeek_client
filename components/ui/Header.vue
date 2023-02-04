@@ -1,5 +1,5 @@
 <template>
-  <header class="flex items-center justify-center gap-3 p-5">
+  <header class="relative flex items-center justify-center gap-3 p-5">
     <slot name="beforeLogo" />
     <nuxt-link to="/">
       <UiLogo class="text-2xl" />
