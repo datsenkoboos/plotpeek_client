@@ -1,7 +1,4 @@
 <template>
-    <div>gg</div>
-  </template>
-<script setup lang="ts">
-
-</script>
-  
+  <div>gg</div>
+</template>
+<script setup lang="ts"></script>

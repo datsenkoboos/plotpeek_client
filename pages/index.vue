@@ -1,9 +1,10 @@
 <template>
-  <section class="px-5">
+  <section class="flex flex-col gap-5 px-5">
     <Search />
+    <UiSectionTitle> Newest </UiSectionTitle>
+    <Newest />
   </section>
 </template>
 <script setup lang="ts">
-import useAuthStore from '@/stores/auth';
-const authStore = useAuthStore();
+import Newest from '@/components/modules/Newest/Newest.vue';
 </script>
