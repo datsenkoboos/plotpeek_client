@@ -1,10 +1,10 @@
 <template>
   <section class="flex flex-col gap-5 px-5">
-    <Search />
+    <MainSearch />
     <UiSectionTitle> Newest </UiSectionTitle>
-    <Newest />
+    <ModuleNewest />
   </section>
 </template>
 <script setup lang="ts">
-import Newest from '@/components/modules/Newest/Newest.vue';
+import ModuleNewest from '@/components/modules/Newest/Newest.vue';
 </script>

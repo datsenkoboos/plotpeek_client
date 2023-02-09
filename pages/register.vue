@@ -1,10 +1,10 @@
 <template>
   <div class="grow flex items-center justify-center">
-    <RegistrationForm @success="registrationRedirect" />
+    <ModuleRegistrationForm @success="registrationRedirect" />
   </div>
 </template>
 <script setup>
-import RegistrationForm from '@/components/modules/RegistrationForm/RegistrationForm.vue';
+import ModuleRegistrationForm from '@/components/modules/RegistrationForm/RegistrationForm.vue';
 
 import useAuthStore from '@/stores/auth';
 const authStore = useAuthStore();

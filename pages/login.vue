@@ -1,10 +1,10 @@
 <template>
   <div class="grow flex items-center justify-center">
-    <LoginForm @success="loginRedirect" />
+    <ModuleLoginForm @success="loginRedirect" />
   </div>
 </template>
 <script setup lang="ts">
-import LoginForm from '@/components/modules/LoginForm/LoginForm.vue';
+import ModuleLoginForm from '@/components/modules/LoginForm/LoginForm.vue';
 
 import useAuthStore from '@/stores/auth';
 const authStore = useAuthStore();

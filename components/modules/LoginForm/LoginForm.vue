@@ -11,11 +11,11 @@
     <h1 class="text-center text-3xl font-medium">Login</h1>
     <div class="flex flex-col gap-2">
       <fieldset class="flex flex-col gap-2">
-        <UsernameInput
+        <MainUsernameInput
           :class="v$.username.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { loginFormState.data.username = $event; }"
         />
-        <PasswordInput
+        <MainPasswordInput
           :class="v$.password.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { loginFormState.data.password = $event; }"
         />

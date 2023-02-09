@@ -1,5 +1,5 @@
 <template>
-  <UiPlotpeek :data="data!.plotpeeks[0]" />
+  <MainPlotpeekList :data="data!.plotpeeks" />
 </template>
 <script setup lang="ts">
 import PlotpeekResponse from '@/api/PlotpeekResponse';

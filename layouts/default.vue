@@ -1,12 +1,12 @@
 <template>
   <div class="relative flex flex-col min-h-[100vh]">
-    <Menu />
-    <Header />
+    <ModuleMenu />
+    <MainHeader />
     <slot />
   </div>
 </template>
 <script setup lang="ts">
-import Menu from '@/components/modules/Menu/Menu.vue';
+import ModuleMenu from '@/components/modules/Menu/Menu.vue';
 import useUiStore from '@/stores/ui';
 const uiStore = useUiStore();
 

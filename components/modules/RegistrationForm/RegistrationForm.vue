@@ -13,19 +13,19 @@
         class="flex flex-col gap-2"
         :class="v$.$errors.length ? '' : 'pb-7'"
       >
-        <UsernameInput
+        <MainUsernameInput
           :class="v$.username.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { registrationFormState.data.username = $event; }"
         />
-        <EmailInput
+        <MainEmailInput
           :class="v$.email.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { registrationFormState.data.email = $event; }"
         />
-        <PasswordInput
+        <MainPasswordInput
           :class="v$.password.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { registrationFormState.data.password = $event; }"
         />
-        <PasswordConfirmInput
+        <MainPasswordConfirmInput
           :class="v$.passwordConfirm.$error ? 'border-red-500' : ''"
           @update-value="($event: string) => { registrationFormState.data.passwordConfirm = $event; }"
         />
