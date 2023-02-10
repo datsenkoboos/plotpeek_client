@@ -16,8 +16,8 @@
       <UiPlotpeekInfoPanel :likes="data._count.likes" />
     </div>
     <UiSectionTitle> Content </UiSectionTitle>
-    <div>
-        {{ data.content }}
+    <div class="pb-5">
+      {{ data.content }}
     </div>
   </div>
 </template>
