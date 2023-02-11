@@ -1,6 +1,7 @@
 <template>
-  <UiTitledInput :title="title" :focused="focused">
+  <UiTitledInput :title="title" :focused="focused" @click="focus">
     <input
+      ref="input"
       class="grow h-full focus:outline-none"
       autocomplete="off"
       :type="type"
@@ -23,6 +24,7 @@ const emit = defineEmits<{
   (event: 'updateValue', value: string): void;
 }>();
 
+const input = ref();
 const value = ref('');
 
 function updateValue(e: Event) {
@@ -34,6 +36,7 @@ function updateValue(e: Event) {
 const focused = ref(false);
 
 function focus() {
+  input.value.focus();
   focused.value = true;
 }
 function blur() {

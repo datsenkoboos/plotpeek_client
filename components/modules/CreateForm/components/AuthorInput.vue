@@ -1,3 +1,3 @@
 <template>
-    <UiTextInput title="Author" placeholder="J. Doe" type="text" />
+  <UiTextInput title="Author" placeholder="J. Doe" type="text" />
 </template>
