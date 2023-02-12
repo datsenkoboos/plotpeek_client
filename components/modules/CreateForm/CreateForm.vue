@@ -1,13 +1,23 @@
 <template>
-  <form class="grow flex flex-col pb-5">
-    <component :is="Math.random() > 0.5 ? Foo : Bar" />
+  <form class="grow flex flex-col gap-2 pb-5">
+    <!-- <component :is="Math.random() > 0.5 ? Foo : Bar" /> -->
     <fieldset class="grow flex flex-col gap-2">
-      <NameInput />
-      <AuthorInput />
-      <DescriptionInput />
-      <VolumeInput @update-value="updateVolume" />
+      <NameInput
+        :class="v$.name.$error ? 'border-red-500' : ''"
+        @update-value="($event: string) => { createFormState.data.name = $event; }"
+      />
+      <AuthorInput
+        :class="v$.author.$error ? 'border-red-500' : ''"
+        @update-value="($event: string) => { createFormState.data.author = $event; }"
+      />
+      <DescriptionInput
+        @update-value="($event: string) => { createFormState.data.description = $event; }"
+      />
+      <VolumeInput
+        @update-value="($event: number | string) => { createFormState.data.volume = $event as   number; }"
+      />
     </fieldset>
-
+    <UiFormValidationErrorOutput :v$="v$" />
     <UiButton class="gap-2" @click.prevent="switchPage">
       Generate
       <Icon name="ph:arrow-right" size="18px" />
@@ -20,10 +30,55 @@ import AuthorInput from './components/AuthorInput.vue';
 import DescriptionInput from './components/DescriptionInput.vue';
 import VolumeInput from './components/VolumeInput.vue';
 
-function updateVolume(value: number | string) {
+import { useVuelidate } from '@vuelidate/core';
+import { required, helpers } from '@vuelidate/validators';
 
-}
-function switchPage() {
+const createFormState = reactive<{
+  data: {
+    name: string;
+    description: string;
+    author: string;
+    volume: number;
+  };
+  error: {
+    state: boolean;
+    statusCode: number | null;
+  };
+  pending: boolean;
+}>({
+  data: {
+    name: '',
+    description: '',
+    author: '',
+    volume: 1,
+  },
+  error: {
+    state: false,
+    statusCode: null,
+  },
+  pending: false,
+});
 
+const createFormRules = computed(() => {
+  return {
+    name: {
+      required: helpers.withMessage('Fill in required fields', required),
+    },
+    author: {
+      required: helpers.withMessage('Fill in required fields', required),
+    },
+  };
+});
+
+const v$ = useVuelidate(createFormRules, createFormState.data, {
+  $autoDirty: true,
+  $lazy: true,
+});
+
+async function switchPage() {
+  const valid = await v$.value.$validate();
+  if (valid) {
+    console.log('valid');
+  }
 }
 </script>
