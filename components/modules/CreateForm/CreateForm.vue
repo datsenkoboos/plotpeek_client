@@ -1,7 +1,7 @@
 <template>
   <form class="grow flex flex-col gap-2 pb-5">
     <!-- <component :is="Math.random() > 0.5 ? Foo : Bar" /> -->
-    <fieldset class="grow flex flex-col gap-2">
+    <fieldset class="grow flex flex-col gap-2" v-show="page === 0">
       <NameInput
         :class="v$.name.$error ? 'border-red-500' : ''"
         @update-value="($event: string) => { createFormState.data.name = $event; }"
@@ -14,9 +14,14 @@
         @update-value="($event: string) => { createFormState.data.description = $event; }"
       />
       <VolumeInput
-        @update-value="($event: number | string) => { createFormState.data.volume = $event as   number; }"
+        @update-value="($event: number | string) => { createFormState.data.volume = $event as number; }"
       />
     </fieldset>
+
+    <fieldset class="grow flex flex-col gap-2" v-show="page === 1">
+      <UiLoadingSpinner v-if="createFormState.pending" />
+    </fieldset>
+
     <UiFormValidationErrorOutput :v$="v$" />
     <UiButton class="gap-2" @click.prevent="switchPage">
       Generate
@@ -75,10 +80,18 @@ const v$ = useVuelidate(createFormRules, createFormState.data, {
   $lazy: true,
 });
 
+const page = ref(0);
+
 async function switchPage() {
   const valid = await v$.value.$validate();
   if (valid) {
-    console.log('valid');
+    page.value += 1;
+    try {
+      createFormState.error.state = false;
+      createFormState.pending = true;
+    } catch (error) {
+    } finally {
+    }
   }
 }
 </script>
