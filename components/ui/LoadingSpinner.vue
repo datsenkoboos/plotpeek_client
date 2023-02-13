@@ -1,14 +1,32 @@
 <template>
-  <div class="spinner"></div>
+  <div
+    class="spinner"
+    :class="`${colorVariants[color]} ${sizeVariants[size]}`"
+  ></div>
 </template>
+<script setup lang="ts">
+interface props {
+  color?: keyof typeof colorVariants;
+  size?: keyof typeof sizeVariants;
+}
+const colorVariants = {
+  white: 'border-[rgba(255,255,255,1)]',
+  black: 'border-[rgba(0,0,0,1)]',
+};
+const sizeVariants = {
+  md: 'w-[20px] h-[20px] border-[2px]',
+  sm: 'w-[15px] h-[15px] border-[2px]',
+  lg: 'w-[25px] h-[25px] border-[2px]',
+};
+const props = withDefaults(defineProps<props>(), {
+  color: 'white',
+  size: 'md',
+});
+</script>
 <style scoped lang="scss">
 .spinner {
-  width: 20px;
-  height: 20px;
   clear: both;
-  margin: 0 auto;
-  border: 2px rgba(white, 0.25) solid;
-  border-top: 2px rgba(white, 1) solid;
+  border-top: transparent solid !important;
   border-radius: 50%;
   -webkit-animation: spinnerRotation 0.6s infinite linear;
   animation: spinnerRotation 0.6s infinite linear;

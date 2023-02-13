@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import AuthResponse from '@/stores/api/AuthResponse';
 
 const $api = axios.create({
   withCredentials: true,
@@ -11,5 +12,28 @@ $api.interceptors.request.use((config: AxiosRequestConfig) => {
   )}`;
   return config;
 });
+
+$api.interceptors.response.use(
+  (config: AxiosResponse) => {
+    return config;
+  },
+  async (error: any) => {
+    const request = error.config;
+    if (error.response.status === 401) {
+      try {
+        const runtimeConfig = useRuntimeConfig();
+
+        const response = await $api.post<AuthResponse>(
+          `${runtimeConfig.public.API_URL}/refresh`
+        );
+        localStorage.setItem('accessToken', response.data.accessToken);
+
+        return $api.request(request);
+      } catch (error) {
+        throw error;
+      }
+    }
+  }
+);
 
 export default $api;
