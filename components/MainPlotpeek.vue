@@ -5,7 +5,7 @@
   >
     <div class="flex gap-5 py-4 px-5 w-full rounded-t-lg font-medium">
       <div class="max-w-[78px]">
-        <h1 class="text-2xl text-brand-gradient">
+        <h1 class="text-2xl text-brand-gradient font-semibold">
           <!-- TODO: text-ellipsis -->
           {{ data.name }}
         </h1>

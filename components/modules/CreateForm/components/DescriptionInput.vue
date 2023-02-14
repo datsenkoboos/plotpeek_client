@@ -1,4 +1,3 @@
 <template>
-  <UiTextArea title="Description" placeholder="The most informative one">
-  </UiTextArea>
+  <UiTextArea title="Description" placeholder="The most informative one" />
 </template>

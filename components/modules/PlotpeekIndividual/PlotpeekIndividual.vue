@@ -2,7 +2,7 @@
   <div class="flex flex-col gap-5">
     <div class="flex flex-col gap-3 border-[1px] rounded-lg pt-3">
       <div class="px-5">
-        <h1 class="text-4xl font-medium text-center text-brand-gradient">
+        <h1 class="text-4xl font-semibold text-center text-brand-gradient">
           {{ data.name }}
         </h1>
         <h3 class="text-lg font-medium text-center">
