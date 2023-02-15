@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import create from '../api/create';
 import generate from '../api/generate';
 
 const useCreateStore = defineStore('create', {
@@ -72,6 +73,31 @@ const useCreateStore = defineStore('create', {
         this.setPending(false);
       }
     },
+    async regenerate() {
+      try {
+        this.setPending(true);
+        const { data: content } = await generate(
+          this.data.author,
+          this.data.name,
+          this.data.volume
+        );
+        this.setContent(content);
+      } catch (error: any) {
+        this.error.state = true;
+        this.error.statusCode = error.response.status
+          ? error.response.status
+          : null;
+      } finally {
+        this.setPending(false);
+      }
+    },
+    async create() {
+      try {
+        await create(this.data.author, this.data.name, this.data.volume, this.data.description, this.data.content)
+      } catch (error: any) {
+        console.log(error.message)
+      }
+    }
   },
 });
 

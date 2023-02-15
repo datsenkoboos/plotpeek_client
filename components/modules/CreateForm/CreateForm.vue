@@ -5,7 +5,7 @@
       :status="createStore.error.statusCode"
       @close="createStore.closeRequestErrorOuput"
     />
-    <component :is="createStore.page ? PageFirst : PageSecond" />
+    <component :is="createStore.page === 0 ? PageFirst : PageSecond" />
   </div>
 </template>
 <script setup lang="ts">

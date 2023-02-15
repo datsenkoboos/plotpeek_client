@@ -15,7 +15,7 @@ onMounted(async () => {
     try {
       await authStore.checkAuth();
     } catch (error: any) {
-      console.log(error.message);
+      // console.log(error.message);
     } finally {
       uiStore.setLoading(false);
     }

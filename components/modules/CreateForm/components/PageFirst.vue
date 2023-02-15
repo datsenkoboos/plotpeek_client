@@ -1,5 +1,5 @@
 <template>
-  <form class="relative grow flex flex-col gap-2 pb-5" @submit.prevent="submit">
+  <form class="relative grow flex flex-col gap-2" @submit.prevent="submit">
     <div class="grow flex flex-col gap-2">
       <NameInput
         :class="v$.name.$error ? 'border-red-500' : ''"
