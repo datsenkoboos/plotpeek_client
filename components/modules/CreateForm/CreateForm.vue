@@ -5,7 +5,9 @@
       :status="createStore.error.statusCode"
       @close="createStore.closeRequestErrorOuput"
     />
-    <component :is="createStore.page === 0 ? PageFirst : PageSecond" />
+    <KeepAlive>
+      <component :is="createStore.page === 0 ? PageFirst : PageSecond" />
+    </KeepAlive>
   </div>
 </template>
 <script setup lang="ts">

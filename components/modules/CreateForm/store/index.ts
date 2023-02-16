@@ -53,6 +53,12 @@ const useCreateStore = defineStore('create', {
     setContent(value: string) {
       this.data.content = value;
     },
+    setError(error: any) {
+      this.error.state = true;
+      this.error.statusCode = error.response.status
+        ? error.response.status
+        : null;
+    },
     async generate(data: typeof this.data) {
       this.setCreateData(data);
       this.setPage(1);
@@ -65,10 +71,8 @@ const useCreateStore = defineStore('create', {
         );
         this.setContent(content);
       } catch (error: any) {
-        this.error.state = true;
-        this.error.statusCode = error.response.status
-          ? error.response.status
-          : null;
+        this.setPage(0);
+        this.setError(error);
       } finally {
         this.setPending(false);
       }
@@ -93,11 +97,22 @@ const useCreateStore = defineStore('create', {
     },
     async create() {
       try {
-        await create(this.data.author, this.data.name, this.data.volume, this.data.description, this.data.content)
+        this.setPending(true);
+        const { data } = await create(
+          this.data.author,
+          this.data.name,
+          this.data.volume,
+          this.data.description,
+          this.data.content
+        );
+        return data;
       } catch (error: any) {
-        console.log(error.message)
+        this.setPage(0);
+        this.setError(error);
+      } finally {
+        this.setPending(false);
       }
-    }
+    },
   },
 });
 

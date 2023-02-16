@@ -1,21 +1,20 @@
 <template>
   <nuxt-link
     :to="`/plotpeek/${data.id}`"
-    class="w-full border-[1px] rounded-lg"
+    class="border-[1px] rounded-lg"
   >
-    <div class="flex gap-5 py-4 px-5 w-full rounded-t-lg font-medium">
-      <div class="max-w-[78px]">
-        <h1 class="text-2xl text-brand-gradient font-semibold">
-          <!-- TODO: text-ellipsis -->
+    <div class="flex flex-col items-start justify-center gap-1 py-3 px-5 rounded-t-lg">
+      <div class="w-full">
+        <h1 class="truncate text-2xl text-brand-gradient font-semibold">
           {{ data.name }}
         </h1>
-        <UiLink class="text-sm gap-1" :to="`/search?q=${data.author}`">
-          <!-- TODO: text-ellipsis -->
-          {{ data.author }}
-        </UiLink>
+          <h2 class="font-medium text-sm truncate">
+            {{ data.author }}
+          </h2>
       </div>
       <div
-        class="text-xs flex items-end text-left text-ellipsis overflow-hidden"
+        v-if="data.description"
+        class="max-h-[32px] text-xs text-ellipsis overflow-hidden"
       >
         <!-- TODO: text-ellipsis -->
         {{ data.description }}
