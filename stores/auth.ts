@@ -5,16 +5,20 @@ import User from './api/User';
 const useAuthStore = defineStore('auth', {
   state: (): {
     authorized: boolean | null;
-    user: User;
+    user: User | null;
   } => {
     return {
       authorized: null,
-      user: {} as User,
+      user: null,
     };
   },
   actions: {
-    setUser(user: User): void {
-      this.user = user;
+    setUser(user: User | null): void {
+      if (this.user && user) {
+        Object.assign(this.user, user)
+      } else {
+        this.user = user;
+      }
     },
     setAuthorized(authorized: boolean): void {
       this.authorized = authorized;

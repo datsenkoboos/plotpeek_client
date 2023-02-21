@@ -1,16 +1,15 @@
 <template>
-  <nuxt-link
-    :to="`/plotpeek/${data.id}`"
-    class="border-[1px] rounded-lg"
-  >
-    <div class="flex flex-col items-start justify-center gap-1 py-3 px-5 rounded-t-lg">
+  <nuxt-link :to="`/plotpeek/${data.id}`" class="border-[1px] rounded-lg">
+    <div
+      class="flex flex-col items-start justify-center gap-1 py-3 px-5 rounded-t-lg"
+    >
       <div class="w-full">
         <h1 class="truncate text-2xl text-brand-gradient font-semibold">
           {{ data.name }}
         </h1>
-          <h2 class="font-medium text-sm truncate">
-            {{ data.author }}
-          </h2>
+        <h2 class="font-medium text-sm truncate">
+          {{ data.author }}
+        </h2>
       </div>
       <div
         v-if="data.description"
