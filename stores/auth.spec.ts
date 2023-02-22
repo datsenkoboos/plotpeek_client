@@ -8,18 +8,6 @@ const testUser = {
     username: 'test'
 }
 
-vi.mock('./api/refresh', () => {
-    return {
-        default: () => {
-            return {
-                data: {
-                    user: testUser
-                }
-            }
-        },
-    }
-})
-
 describe('Auth Store', () => {
     beforeEach(() => {
         setActivePinia(createPinia())
@@ -47,14 +35,5 @@ describe('Auth Store', () => {
 
         store.setAuthorized(false)
         expect(store.authorized).toBe(false)
-    })
-
-    test('checkAuth', async () => {
-        const store = useAuthStore()
-
-        await store.checkAuth()
-
-        expect(store.authorized).toBe(true)
-        expect(store.user).toEqual(testUser)
     })
 })

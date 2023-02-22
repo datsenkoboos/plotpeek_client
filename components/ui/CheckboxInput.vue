@@ -6,7 +6,7 @@
     @click="updateValue"
     class="cursor-pointer flex items-center justify-center w-[15px] h-[15px] rounded-full border-[1px] focus:border-black focus:outline-none"
     tabindex="0"
-    data-testid="chekbox"
+    data-testid="checkbox"
   >
     <div
       v-show="value"
