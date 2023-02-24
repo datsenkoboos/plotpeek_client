@@ -1,36 +1,36 @@
-import useAuthStore from './auth'
-import { setActivePinia, createPinia } from 'pinia'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import useAuthStore from './auth';
+import { setActivePinia, createPinia } from 'pinia';
+import { beforeEach, describe, expect, test, vi } from 'vitest';
 
 const testUser = {
-    id: 1,
-    email: 'test@example.com',
-    username: 'test'
-}
+  id: 1,
+  email: 'test@example.com',
+  username: 'test',
+};
 
 vi.mock('./api/refresh', () => {
-    return {
-        default: () => {
-            return {
-                data: {
-                    user: testUser
-                }
-            }
+  return {
+    default: () => {
+      return {
+        data: {
+          user: testUser,
         },
-    }
-})
+      };
+    },
+  };
+});
 
 describe('Auth Store checkAuth success', () => {
-    beforeEach(() => {
-        setActivePinia(createPinia())
-    })
+  beforeEach(() => {
+    setActivePinia(createPinia());
+  });
 
-    test('checkAuth success', async () => {
-        const store = useAuthStore()
+  test('checkAuth success', async () => {
+    const store = useAuthStore();
 
-        await store.checkAuth()
+    await store.checkAuth();
 
-        expect(store.authorized).toBe(true)
-        expect(store.user).toEqual(testUser)
-    })
-})
+    expect(store.authorized).toBe(true);
+    expect(store.user).toEqual(testUser);
+  });
+});

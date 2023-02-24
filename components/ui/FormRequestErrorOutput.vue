@@ -3,6 +3,7 @@
     <div
       v-show="open"
       class="absolute z-[9999] w-full h-full backdrop-blur-sm rounded-lg flex flex-col items-center justify-center gap-2 font-semibold select-none"
+      data-testid="errorPopup"
     >
       <Icon
         name="material-symbols:warning-rounded"
@@ -11,18 +12,19 @@
       />
       <div class="text-center">
         <template v-if="status === 403">
-          <p class="text-md">Confirm email adress</p>
+          <p class="text-md" data-testid="errorTitle">Confirm email adress</p>
         </template>
         <template v-else-if="status === 401">
-          <p class="text-md">Wrong login credentials</p>
+          <p class="text-md" data-testid="errorTitle">Wrong login credentials</p>
         </template>
         <template v-else>
-          <p class="text-md">Unexpected error occured</p>
+          <p class="text-md" data-testid="errorTitle">Unexpected error occured</p>
           <p class="text-xs">Check your internet connection</p>
         </template>
       </div>
       <button
         @click.prevent="close"
+        data-testid="closeButton"
         class="absolute top-3 right-3 flex items-center justify-center"
       >
         <Icon name="material-symbols:close-rounded" size="21px" />

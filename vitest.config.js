@@ -5,13 +5,11 @@ export default {
   plugins: [
     vue(),
     AutoImport({
-        imports: [
-            'vue',
-        ]
-    })
+      imports: ['vue'],
+    }),
   ],
   test: {
     globals: true,
     environment: 'jsdom',
-    }
-}
+  },
+};

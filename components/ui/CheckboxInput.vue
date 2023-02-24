@@ -11,32 +11,25 @@
     <div
       v-show="value"
       class="w-[11px] h-[11px] rounded-full brand-gradient"
-      :class="hexColor ? `bg-[${color}]` : `bg-${color}`"
       data-testid="chekboxIndicator"
     ></div>
   </div>
 </template>
 <script setup lang="ts">
 interface Props {
-  default?: boolean;
-  color?: string;
+  checked?: boolean;
   name: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  default: false,
-  color: 'pink-500',
+  checked: false,
 });
 
 const emit = defineEmits<{
   (e: 'updateValue', value: boolean): void;
 }>();
 
-const hexColor = computed(() => {
-  return props.color.includes('#');
-});
-
-const value = ref(props.default);
+const value = ref(props.checked);
 
 const updateValue = () => {
   value.value = !value.value;

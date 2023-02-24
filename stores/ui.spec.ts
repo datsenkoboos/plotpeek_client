@@ -1,33 +1,33 @@
-import usestore from "./ui";
-import { setActivePinia, createPinia } from 'pinia'
-import { beforeEach, describe, expect, test } from 'vitest'
+import usestore from './ui';
+import { setActivePinia, createPinia } from 'pinia';
+import { beforeEach, describe, expect, test } from 'vitest';
 
 describe('UI Store', () => {
-    beforeEach(() => {
-        setActivePinia(createPinia())
-    })
+  beforeEach(() => {
+    setActivePinia(createPinia());
+  });
 
-    test('set menuActive', () => {
-        const store = usestore()
+  test('set menuActive', () => {
+    const store = usestore();
 
-        expect(store.menuActive).toBe(false)
+    expect(store.menuActive).toBe(false);
 
-        store.setMenuActive(true)
-        expect(store.menuActive).toBe(true)
+    store.setMenuActive(true);
+    expect(store.menuActive).toBe(true);
 
-        store.setMenuActive(false)
-        expect(store.menuActive).toBe(false)
-    })
+    store.setMenuActive(false);
+    expect(store.menuActive).toBe(false);
+  });
 
-    test('set loading', () => {
-        const store = usestore()
-        
-        expect(store.loading).toBe(true)
+  test('set loading', () => {
+    const store = usestore();
 
-        store.setLoading(false)
-        expect(store.loading).toBe(false)
+    expect(store.loading).toBe(true);
 
-        store.setLoading(true)
-        expect(store.loading).toBe(true)
-    })
-})
+    store.setLoading(false);
+    expect(store.loading).toBe(false);
+
+    store.setLoading(true);
+    expect(store.loading).toBe(true);
+  });
+});

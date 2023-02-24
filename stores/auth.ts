@@ -15,7 +15,7 @@ const useAuthStore = defineStore('auth', {
   actions: {
     setUser(user: User | null): void {
       if (this.user && user) {
-        Object.assign(this.user, user)
+        Object.assign(this.user, user);
       } else {
         this.user = user;
       }
