@@ -15,7 +15,7 @@ describe('FormValidationErrorOutput', async () => {
             }
         })
 
-        expect(wrapper.get(errorListSelector).isVisible()).toBe(false)
+        expect(wrapper.find(errorListSelector).exists()).toBe(false)
     })
     it('renders visible with error list', () => {
         const wrapper = mount(FormValidationErrorOutput, {
@@ -31,7 +31,7 @@ describe('FormValidationErrorOutput', async () => {
 
         })
 
-        expect(wrapper.get(errorListSelector).isVisible()).toBe(true)
+        expect(wrapper.find(errorListSelector).exists()).toBe(true)
     })
     it('renders first error message', () => {
         const wrapper = mount(FormValidationErrorOutput, {
@@ -49,6 +49,6 @@ describe('FormValidationErrorOutput', async () => {
             }
         })
 
-        expect(wrapper.get(errorListSelector).text()).toBe('first')
+        expect(wrapper.find(errorListSelector).text()).toBe('first')
     })
 })

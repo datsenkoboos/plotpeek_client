@@ -3,6 +3,7 @@
     <div
       v-show="loading"
       class="absolute z-[9999] top-0 left-0 w-full h-full bg-white flex items-center justify-center"
+      data-testid="loading"
     >
       <UiLogo class="text-4xl" />
     </div>

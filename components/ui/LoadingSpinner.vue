@@ -1,6 +1,7 @@
 <template>
   <div
-    class="spinner"
+    class="spinner border-[2px]"
+    data-testid="spinner"
     :class="`${colorVariants[color]} ${sizeVariants[size]}`"
   ></div>
 </template>
@@ -14,9 +15,9 @@ const colorVariants = {
   black: 'border-[rgba(0,0,0,1)]',
 };
 const sizeVariants = {
-  md: 'w-[20px] h-[20px] border-[2px]',
-  sm: 'w-[15px] h-[15px] border-[2px]',
-  lg: 'w-[25px] h-[25px] border-[2px]',
+  md: 'w-[20px] h-[20px]',
+  sm: 'w-[15px] h-[15px]',
+  lg: 'w-[25px] h-[25px]',
 };
 const props = withDefaults(defineProps<props>(), {
   color: 'white',

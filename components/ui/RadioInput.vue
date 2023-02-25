@@ -31,7 +31,7 @@ const props = defineProps<{
   title?: string;
 }>();
 const emit = defineEmits<{
-  // TODO: automatic value generation
+  // TODO: automatic value types generation
   (e: 'updateValue', value: string | number): void;
 }>();
 
